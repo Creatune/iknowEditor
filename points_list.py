@@ -1,13 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
+import gi
+gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, GObject
 from gettext import gettext as _
 
 class Data(Gtk.TreeView):
 
     __gsignals__ = {
-             'some-changed': (GObject.SIGNAL_RUN_FIRST, None, [str, str], ), }
+             'some-changed': (GObject.SignalFlags.RUN_FIRST, None, [str, str], ), }
              
 
     def __init__(self, activity):
@@ -133,8 +134,8 @@ class Data(Gtk.TreeView):
             pos = pos.split(',')
             pos = [float(pos[0]), float(pos[1])]
             pos = (int(pos[0]), int(pos[1]))
-        except Exception, err:
-            print err
+        except Exception as err:
+            print(err)
             return False, None
         return True, pos
 

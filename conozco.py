@@ -28,7 +28,8 @@ import sys
 import random
 import pygame
 import time
-import importlib
+import importlib.machinery
+import importlib.util
 import gettext
 import configparser
 from gettext import gettext as _
@@ -247,7 +248,7 @@ class Conozco():
         a_path = os.path.abspath(r_path)
         f = None
         try:
-            f = imp.load_source('commons', a_path)
+            f = importlib.machinery.SourceFileLoader('commons', a_path)
         except:
             print(_('Cannot open %s') % 'commons')
 
